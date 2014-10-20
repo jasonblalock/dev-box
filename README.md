@@ -2,11 +2,27 @@ rails-dev-box
 =============
 # Initial config
 
-    sudo aptitude update && sudo aptitude safe-upgrade && sudo aptitude install build-essential vim software-properties-common ruby-dev
-    sudo add-apt-repository ppa:git-core/ppa
-    sudo aptitude update && sudo aptitude install git
+    sudo vmware-config-tools.pl
+    sudo aptitude install software-properties-common && sudo add-apt-repository ppa:git-core/ppa && sudo aptitude update && sudo aptitude safe-upgrade && sudo aptitude install build-essential vim ruby-dev git libsqlite3-dev
+
+## Git
+
     git config --global core.autocrlf input
     git config --global branch.autosetuprebase always
+
+## Network
+
+Open /etc/network/interfaces in editor
+
+    sudo vim /etc/network/interfaces
+
+Add network configuration
+
+    auto eth1
+    iface eth1 inet static
+    address 192.168.33.10
+    netmask 255.255.255.0
+    gateway 192.168.33.1
 
 # chruby
 
