@@ -5,6 +5,8 @@ rails-dev-box
     sudo aptitude update && sudo aptitude safe-upgrade && sudo aptitude install build-essential vim software-properties-common ruby-dev
     sudo add-apt-repository ppa:git-core/ppa
     sudo aptitude update && sudo aptitude install git
+    git config --global core.autocrlf input
+    git config --global branch.autosetuprebase always
 
 # chruby
 
@@ -67,4 +69,19 @@ Restart
 ## Berkshelf
 
     gem install berkshelf
+
+# Kitchen
+
+## Setup
+
+    git clone git@github.com:jasonblalock/rails-dev-box.git
+    cd rails-dev-box
+    berks vendor kitchen/cookbooks
+
+## Run
+
+    sudo chruby-exec -- chef-solo -c solo.rb -j solo.json
+
+
+
 
