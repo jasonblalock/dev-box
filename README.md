@@ -3,7 +3,7 @@ rails-dev-box
 # Initial config
 
     sudo vmware-config-tools.pl
-    sudo aptitude install software-properties-common && sudo add-apt-repository ppa:git-core/ppa && sudo aptitude update && sudo aptitude safe-upgrade && sudo aptitude install build-essential vim ruby-dev git libsqlite3-dev
+    sudo aptitude install software-properties-common && sudo add-apt-repository ppa:git-core/ppa && sudo aptitude update && sudo aptitude safe-upgrade && sudo aptitude install build-essential vim ruby-dev git libsqlite3-dev openssh-server
 
 ## Git
 
