@@ -22,7 +22,6 @@ Add network configuration
     iface eth1 inet static
     address 192.168.33.10
     netmask 255.255.255.0
-    gateway 192.168.33.1
 
 # chruby
 
