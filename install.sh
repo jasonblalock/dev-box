@@ -4,10 +4,10 @@ rubyversion=2.1.4
 
 getinfo()
 {
-  "Enter your name for git:  (looks like 192.168.1.22)" gitname
-  "Enter your email for git: (looks like username@users.noreply.github.com)" gitemail
-  "Enter the ip address for your server:  (looks like 192.168.1.22)" staticip
-  "Enter the netmask for your network:    (looks like 255.255.255)" netmask
+  sudo -u $1 read -p "Enter your name for git: (looks like 192.168.1.22) " gitname
+  sudo -u $1 read -p "Enter your email for git: (looks like username@users.noreply.github.com) " gitemail
+  sudo -u $1 read -p "Enter the ip address for your server: (looks like 192.168.1.22) " staticip
+  sudo -u $1 read -p "Enter the netmask for your network: (looks like 255.255.255) " netmask
 }
 
 writeinterfacefile()
@@ -25,27 +25,26 @@ confirmation()
 {
   sudo -u $1 echo""
   sudo -u $1 echo"So your settings are"
-  sudo -u $1 echo "Git name is                  " echo -n $gitname
-  sudo -u $1 echo "Git email is                 " echo -n $gitemail
-  sudo -u $1 echo "Your decided Server IP is    " echo -n $istaticp
-  sudo -u $1 echo "The Mask fpr the Network is  " echo -n $netmask
+  sudo -u $1 echo "Git name is        " $gitname
+  sudo -u $1 echo "Git email is       " $gitemail
+  sudo -u $1 echo "Your IP is         " $staticip
+  sudo -u $1 echo "You subnet mask is " $netmask
   sudo -u $1 echo""
-  sudo -u $1 echo "Are these informations correct? (Y/n)"
 
-while true; do
-  read -p "Are these informations correct? [y/N]" yn?
-  case $yn in
-    [Yy]* ) writeinterfacefile ;;
-    [Nn]* ) getinfo ;;
-    * ) sudo -u $1 echo "Pleas enter Y or n";;
-  esac
+  while true; do
+    sudo -u $1 read -p "Are these informations correct? [y/N]" yn
+    case $yn in
+      [Yy]* ) writeinterfacefile ;;
+      [Nn]* ) getinfo ;;
+      * ) sudo -u $1 echo "Pleas enter Y or n";;
+    esac
   done
 }
 
 clear
-sudo -u $1 cd
-getinfo
-confirmation
+cd
+getinfo $1
+confirmation $1
 aptitude install software-properties-common
 add-apt-repository ppa:git-core/ppa
 aptitude update
