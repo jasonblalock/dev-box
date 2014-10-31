@@ -26,9 +26,9 @@ confirmation()
 {
   sudo -u $1 echo ""
   sudo -u $1 echo "So your settings are:"
-  sudo -u $1 echo "Git name is        " $gitname
-  sudo -u $1 echo "Github username is " $gitusername
-  sudo -u $1 echo "Your IP is         " $staticip
+  sudo -u $1 echo "Your git config name is: " $gitname
+  sudo -u $1 echo "Your Github username is: " $gitusername
+  sudo -u $1 echo "Your IP is:              " $staticip
   # sudo -u $1 echo "You subnet mask is " $netmask
   sudo -u $1 echo ""
 
@@ -84,7 +84,6 @@ cd ~
 sudo -u $1 ruby-install ruby $rubyversion
 sudo -u $1 echo "gem: --no-document" > ~/.gemrc
 sudo -u $1 echo "ruby-$rubyversion" > ~/.ruby-version
-cd ~
 sudo -u $1 chruby ruby-$rubyversion
 
 sudo -u $1 gem update --system
@@ -94,9 +93,9 @@ sudo -u $1 gem install rake
 sudo chruby-exec -- gem install chef
 sudo -u $1 gem install berkshelf
 sudo -u $1 git clone git@github.com:jasonblalock/rails-dev-box.git
-sudo -u $1 cd rails-dev-box
+cd rails-dev-box
 sudo -u $1 berks vendor kitchen/cookbooks
-sudo chruby-exec -- chef-solo -c solo.rb -j solo.json
+chruby-exec -- chef-solo -c solo.rb -j solo.json
 
 read -p "Restart? [y/N] " yn
 case $yn in
