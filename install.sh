@@ -4,10 +4,10 @@ rubyversion=2.1.4
 
 getinfo()
 {
-  sudo -u ${USERNAME} read -p "Enter your name for git:  (looks like 192.168.1.22)" gitname
-  sudo -u ${USERNAME} read -p "Enter your email for git: (looks like username@users.noreply.github.com)" gitemail
-  sudo -u ${USERNAME} read -p "Enter the ip address for your server:  (looks like 192.168.1.22)" staticip
-  sudo -u ${USERNAME} read -p "Enter the netmask for your network:    (looks like 255.255.255)" netmask
+  sudo -u $1 read -p "Enter your name for git:  (looks like 192.168.1.22)" gitname
+  sudo -u $1 read -p "Enter your email for git: (looks like username@users.noreply.github.com)" gitemail
+  sudo -u $1 read -p "Enter the ip address for your server:  (looks like 192.168.1.22)" staticip
+  sudo -u $1 read -p "Enter the netmask for your network:    (looks like 255.255.255)" netmask
 }
 
 writeinterfacefile()
@@ -23,27 +23,27 @@ EOF
 
 confirmation()
 {
-  sudo -u ${USERNAME} echo""
-  sudo -u ${USERNAME} echo"So your settings are"
-  sudo -u ${USERNAME} echo "Git name is                  " echo -n $gitname
-  sudo -u ${USERNAME} echo "Git email is                 " echo -n $gitemail
-  sudo -u ${USERNAME} echo "Your decided Server IP is    " echo -n $istaticp
-  sudo -u ${USERNAME} echo "The Mask fpr the Network is  " echo -n $netmask
-  sudo -u ${USERNAME} echo""
-  sudo -u ${USERNAME} echo "Are these informations correct? (Y/n)"
+  sudo -u $1 echo""
+  sudo -u $1 echo"So your settings are"
+  sudo -u $1 echo "Git name is                  " echo -n $gitname
+  sudo -u $1 echo "Git email is                 " echo -n $gitemail
+  sudo -u $1 echo "Your decided Server IP is    " echo -n $istaticp
+  sudo -u $1 echo "The Mask fpr the Network is  " echo -n $netmask
+  sudo -u $1 echo""
+  sudo -u $1 echo "Are these informations correct? (Y/n)"
 
 while true; do
-  sudo -u ${USERNAME} read -p "Are these informations correct? [y/N]" yn?
+  sudo -u $1 read -p "Are these informations correct? [y/N]" yn?
   case $yn in
     [Yy]* ) writeinterfacefile ;;
     [Nn]* ) getinfo ;;
-    * ) sudo -u ${USERNAME} echo "Pleas enter Y or n";;
+    * ) sudo -u $1 echo "Pleas enter Y or n";;
   esac
   done
 }
 
 clear
-sudo -u ${USERNAME} cd
+sudo -u $1 cd
 getinfo
 confirmation
 aptitude install software-properties-common
@@ -53,13 +53,13 @@ aptitude safe-upgrade
 aptitude install build-essential vim ruby-dev git libsqlite3-dev openssh-server
 sudo vmware-config-tools.pl -d
 
-sudo -u ${USERNAME} git config --global user.name "$gitname"
-sudo -u ${USERNAME} git config --global user.email $gitemail
-sudo -u ${USERNAME} git config --global core.autocrlf input
-sudo -u ${USERNAME} git config --global branch.autosetuprebase always
+sudo -u $1 git config --global user.name "$gitname"
+sudo -u $1 git config --global user.email $gitemail
+sudo -u $1 git config --global core.autocrlf input
+sudo -u $1 git config --global branch.autosetuprebase always
 
-sudo -u ${USERNAME} wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
-sudo -u ${USERNAME} tar -xzvf chruby-0.3.8.tar.g
+sudo -u $1 wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
+sudo -u $1 tar -xzvf chruby-0.3.8.tar.g
 make chruby-0.3.8/install
 
 if [ ! -e /etc/profile.d/chruby.sh ]; then
@@ -71,23 +71,23 @@ fi
 EOF
 fi
 
-sudo -u ${USERNAME} wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
-sudo -u ${USERNAME} tar -xzvf ruby-install-0.5.0.tar.gz
+sudo -u $1 wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
+sudo -u $1 tar -xzvf ruby-install-0.5.0.tar.gz
 make ruby-install-0.5.0/install
-sudo -u ${USERNAME} ruby-install ruby $rubyversion
-sudo -u ${USERNAME} echo "gem: --no-document" > ~/.gemrc
-sudo -u ${USERNAME} echo "ruby-$rubyversion" > ~/.ruby-version
-sudo -u ${USERNAME} source /usr/local/share/chruby/chruby.sh
-sudo -u ${USERNAME} source /usr/local/share/chruby/auto.sh
-sudo -u ${USERNAME} chruby ruby-$rubyversion
+sudo -u $1 ruby-install ruby $rubyversion
+sudo -u $1 echo "gem: --no-document" > ~/.gemrc
+sudo -u $1 echo "ruby-$rubyversion" > ~/.ruby-version
+sudo -u $1 source /usr/local/share/chruby/chruby.sh
+sudo -u $1 source /usr/local/share/chruby/auto.sh
+sudo -u $1 chruby ruby-$rubyversion
 
-sudo -u ${USERNAME} gem update --system
-sudo -u ${USERNAME} gem install bundler
-sudo -u ${USERNAME} gem install rake
+sudo -u $1 gem update --system
+sudo -u $1 gem install bundler
+sudo -u $1 gem install rake
 
 sudo chruby-exec -- gem install chef
-sudo -u ${USERNAME} gem install berkshelf
-sudo -u ${USERNAME} git clone git@github.com:jasonblalock/rails-dev-box.git
-sudo -u ${USERNAME} cd rails-dev-box
-sudo -u ${USERNAME} berks vendor kitchen/cookbooks
+sudo -u $1 gem install berkshelf
+sudo -u $1 git clone git@github.com:jasonblalock/rails-dev-box.git
+sudo -u $1 cd rails-dev-box
+sudo -u $1 berks vendor kitchen/cookbooks
 sudo chruby-exec -- chef-solo -c solo.rb -j solo.json
