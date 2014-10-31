@@ -61,7 +61,7 @@ sudo -u $1 git config --global user.email "${gitusername}@users.noreply.github.c
 sudo -u $1 git config --global core.autocrlf input
 sudo -u $1 git config --global branch.autosetuprebase always
 
-sudo -u $1 wget -O "chruby-${chrubyversion}.tar.gz https://github.com/postmodern/chruby/archive/v${chrubyversion}.tar.gz"
+sudo -u $1 wget -O "chruby-${chrubyversion}.tar.gz" "https://github.com/postmodern/chruby/archive/v${chrubyversion}.tar.gz"
 sudo -u $1 tar -xzvf "chruby-$chrubyversion.tar.gz"
 cd "chruby-${chrubyversion}/"
 make install
@@ -79,7 +79,7 @@ fi
 chmod u+x /etc/profile.d/chruby.sh
 source /etc/profile.d/chruby.sh
 
-sudo -u $1 wget -O "ruby-install-${rubyinstallversion}.tar.gz https://github.com/postmodern/ruby-install/archive/v${rubyinstallversion}.tar.gz"
+sudo -u $1 wget -O "ruby-install-${rubyinstallversion}.tar.gz" "https://github.com/postmodern/ruby-install/archive/v${rubyinstallversion}.tar.gz"
 sudo -u $1 tar -xzvf "ruby-install-${rubyinstallversion}.tar.gz"
 cd "ruby-install-${rubyinstallversion}/"
 make install
