@@ -15,7 +15,8 @@ writeinterfacefile()
   cat << EOF >> /etc/network/interfaces
 
 #Your static network configuration
-iface eth0 inet static
+auto eth1
+iface eth1 inet static
 address echo $staticip
 netmask 255.255.255.0
 EOF
@@ -36,20 +37,20 @@ confirmation()
     case $yn in
       [Yy]* ) writeinterfacefile; break;;
       [Nn]* ) getinfo ;;
-      * ) sudo -u $1 echo "Please enter Y or n";;
+      * ) sudo -u $1 echo "Please enter Y or n ";;
     esac
   done
 }
 
 clear
-cd
+cd ~
 getinfo $1
 confirmation $1
 aptitude install software-properties-common
 add-apt-repository ppa:git-core/ppa
 aptitude update
-aptitude safe-upgrade
-aptitude install build-essential vim ruby-dev git libsqlite3-dev openssh-server
+aptitude -y safe-upgrade
+aptitude -y install build-essential vim ruby-dev git libsqlite3-dev openssh-server
 sudo vmware-config-tools.pl -d
 
 sudo -u $1 git config --global user.name "$gitname"
@@ -58,8 +59,10 @@ sudo -u $1 git config --global core.autocrlf input
 sudo -u $1 git config --global branch.autosetuprebase always
 
 sudo -u $1 wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
-sudo -u $1 tar -xzvf chruby-0.3.8.tar.g
-make chruby-0.3.8/install
+sudo -u $1 tar -xzvf chruby-0.3.8.tar.gz
+cd chruby-0.3.8/
+make install
+cd ~
 
 if [ ! -e /etc/profile.d/chruby.sh ]; then
 cat << EOF >> /etc/profile.d/chruby.sh
@@ -72,7 +75,9 @@ fi
 
 sudo -u $1 wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
 sudo -u $1 tar -xzvf ruby-install-0.5.0.tar.gz
-make ruby-install-0.5.0/install
+cd ruby-install-0.5.0/
+make install
+cd ~
 sudo -u $1 ruby-install ruby $rubyversion
 sudo -u $1 echo "gem: --no-document" > ~/.gemrc
 sudo -u $1 echo "ruby-$rubyversion" > ~/.ruby-version
@@ -90,3 +95,9 @@ sudo -u $1 git clone git@github.com:jasonblalock/rails-dev-box.git
 sudo -u $1 cd rails-dev-box
 sudo -u $1 berks vendor kitchen/cookbooks
 sudo chruby-exec -- chef-solo -c solo.rb -j solo.json
+
+read -p "Restart? [y/N] " yn
+case $yn in
+  [Yy]* ) reboot;;
+  [Nn]* ) exit;;
+esac
