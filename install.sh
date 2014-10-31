@@ -4,10 +4,10 @@ rubyversion=2.1.4
 
 getinfo()
 {
-  read -p "Enter your name for git: (looks like 192.168.1.22) " gitname
-  read -p "Enter your email for git: (looks like username@users.noreply.github.com) " gitemail
-  read -p "Enter the ip address for your server: (looks like 192.168.1.22) " staticip
-  read -p "Enter the netmask for your network: (looks like 255.255.255) " netmask
+  read -p "Enter your name for git: " gitname
+  read -p "Enter your email for git (username@users.noreply.github.com): " gitemail
+  read -p "Enter the ip address for your server (192.168.1.22): " staticip
+  # read -p "Enter the netmask for your network: (looks like 255.255.255) " netmask
 }
 
 writeinterfacefile()
@@ -17,7 +17,7 @@ writeinterfacefile()
 #Your static network configuration
 iface eth0 inet static
 address echo $staticip
-netmask echo $netmask
+netmask 255.255.255.0
 EOF
 }
 
@@ -28,7 +28,7 @@ confirmation()
   sudo -u $1 echo "Git name is        " $gitname
   sudo -u $1 echo "Git email is       " $gitemail
   sudo -u $1 echo "Your IP is         " $staticip
-  sudo -u $1 echo "You subnet mask is " $netmask
+  # sudo -u $1 echo "You subnet mask is " $netmask
   sudo -u $1 echo ""
 
   while true; do
