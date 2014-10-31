@@ -51,7 +51,7 @@ add-apt-repository -y ppa:git-core/ppa
 aptitude update
 aptitude -y safe-upgrade
 aptitude -y install build-essential vim ruby-dev git libsqlite3-dev openssh-server
-sudo vmware-config-tools.pl -d
+vmware-config-tools.pl -d
 
 sudo -u $1 git config --global user.name "$gitname"
 sudo -u $1 git config --global user.email "$gitusername@users.noreply.github.com"
@@ -90,7 +90,7 @@ sudo -u $1 gem update --system
 sudo -u $1 gem install bundler
 sudo -u $1 gem install rake
 
-sudo chruby-exec -- gem install chef
+chruby-exec -- gem install chef
 sudo -u $1 gem install berkshelf
 sudo -u $1 git clone git@github.com:jasonblalock/rails-dev-box.git
 cd rails-dev-box
