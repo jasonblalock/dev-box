@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 rubyversion=2.1.4
 
@@ -23,21 +23,21 @@ EOF
 
 confirmation()
 {
-  echo""
-  echo"So your settings are"
-  echo "Git name is                  " echo -n $gitname
-  echo "Git email is                  " echo -n $gitemail
-  echo "Your decided Server IP is    " echo -n $istaticp
-  echo "The Mask fpr the Network is  " echo -n $netmask
-  echo""
-  echo "Are these informations correct? (Y/n)"
+  sudo -u ${USERNAME} echo""
+  sudo -u ${USERNAME} echo"So your settings are"
+  sudo -u ${USERNAME} echo "Git name is                  " echo -n $gitname
+  sudo -u ${USERNAME} echo "Git email is                 " echo -n $gitemail
+  sudo -u ${USERNAME} echo "Your decided Server IP is    " echo -n $istaticp
+  sudo -u ${USERNAME} echo "The Mask fpr the Network is  " echo -n $netmask
+  sudo -u ${USERNAME} echo""
+  sudo -u ${USERNAME} echo "Are these informations correct? (Y/n)"
 
 while true; do
-  read -p "Are these informations correct? [y/N]" yn?
+  sudo -u ${USERNAME} read -p "Are these informations correct? [y/N]" yn?
   case $yn in
     [Yy]* ) writeinterfacefile ;;
     [Nn]* ) getinfo ;;
-    * ) echo "Pleas enter Y or n";;
+    * ) sudo -u ${USERNAME} echo "Pleas enter Y or n";;
   esac
   done
 }
