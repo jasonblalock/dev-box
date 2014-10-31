@@ -2,7 +2,7 @@
 
 rubyversion=2.1.4
 chrubyversion=0.3.8
-rubyinstallversion=$rubyinstallversion
+rubyinstallversion=0.5.0
 
 getinfo()
 {
