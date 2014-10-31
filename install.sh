@@ -1,6 +1,8 @@
 #!/bin/bash
 
 rubyversion=2.1.4
+chrubyversion=0.3.8
+rubyinstallversion=$rubyinstallversion
 
 getinfo()
 {
@@ -53,14 +55,14 @@ aptitude -y safe-upgrade
 aptitude -y install build-essential vim ruby-dev git libsqlite3-dev openssh-server
 vmware-config-tools.pl -d
 
-sudo -u $1 git config --global user.name "$gitname"
+sudo -u $1 git config --global user.name $gitname
 sudo -u $1 git config --global user.email "$gitusername@users.noreply.github.com"
 sudo -u $1 git config --global core.autocrlf input
 sudo -u $1 git config --global branch.autosetuprebase always
 
-sudo -u $1 wget -O chruby-0.3.8.tar.gz https://github.com/postmodern/chruby/archive/v0.3.8.tar.gz
-sudo -u $1 tar -xzvf chruby-0.3.8.tar.gz
-cd chruby-0.3.8/
+sudo -u $1 wget -O chruby-$chrubyversion.tar.gz https://github.com/postmodern/chruby/archive/v$chrubyversion.tar.gz
+sudo -u $1 tar -xzvf chruby-$chrubyversion.tar.gz
+cd chruby-$chrubyversion/
 make install
 cd ~
 
@@ -74,11 +76,11 @@ EOF
 fi
 
 chmod u+x /etc/profile.d/chruby.sh
-sudo -u $1 source /etc/profile.d/chruby.sh
+source /etc/profile.d/chruby.sh
 
-sudo -u $1 wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
-sudo -u $1 tar -xzvf ruby-install-0.5.0.tar.gz
-cd ruby-install-0.5.0/
+sudo -u $1 wget -O ruby-install-$rubyinstallversion.tar.gz https://github.com/postmodern/ruby-install/archive/v$rubyinstallversion.tar.gz
+sudo -u $1 tar -xzvf ruby-install-$rubyinstallversion.tar.gz
+cd ruby-install-$rubyinstallversion/
 make install
 cd ~
 sudo -u $1 ruby-install ruby $rubyversion
