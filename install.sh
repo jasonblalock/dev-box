@@ -5,7 +5,7 @@ rubyversion=2.1.4
 getinfo()
 {
   read -p "Enter your name for git: " gitname
-  read -p "Enter your email for git (username@users.noreply.github.com): " gitemail
+  read -p "Enter your username for github : " gitusername
   read -p "Enter the ip address for your server (192.168.1.22): " staticip
   # read -p "Enter the netmask for your network: (looks like 255.255.255) " netmask
 }
@@ -27,7 +27,7 @@ confirmation()
   sudo -u $1 echo ""
   sudo -u $1 echo "So your settings are"
   sudo -u $1 echo "Git name is        " $gitname
-  sudo -u $1 echo "Git email is       " $gitemail
+  sudo -u $1 echo "Git username is       " $gitusername
   sudo -u $1 echo "Your IP is         " $staticip
   # sudo -u $1 echo "You subnet mask is " $netmask
   sudo -u $1 echo ""
@@ -46,15 +46,15 @@ clear
 cd ~
 getinfo $1
 confirmation $1
-aptitude install software-properties-common
-add-apt-repository ppa:git-core/ppa
+aptitude -y install software-properties-common
+add-apt-repository -y ppa:git-core/ppa
 aptitude update
 aptitude -y safe-upgrade
 aptitude -y install build-essential vim ruby-dev git libsqlite3-dev openssh-server
 sudo vmware-config-tools.pl -d
 
 sudo -u $1 git config --global user.name "$gitname"
-sudo -u $1 git config --global user.email $gitemail
+sudo -u $1 git config --global user.email "$gitusername@users.noreply.github.com"
 sudo -u $1 git config --global core.autocrlf input
 sudo -u $1 git config --global branch.autosetuprebase always
 
@@ -73,6 +73,9 @@ fi
 EOF
 fi
 
+chmod u+x /etc/profile.d/chruby.sh
+source /etc/profile.d/chruby.ch
+
 sudo -u $1 wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
 sudo -u $1 tar -xzvf ruby-install-0.5.0.tar.gz
 cd ruby-install-0.5.0/
@@ -81,8 +84,7 @@ cd ~
 sudo -u $1 ruby-install ruby $rubyversion
 sudo -u $1 echo "gem: --no-document" > ~/.gemrc
 sudo -u $1 echo "ruby-$rubyversion" > ~/.ruby-version
-sudo -u $1 source /usr/local/share/chruby/chruby.sh
-sudo -u $1 source /usr/local/share/chruby/auto.sh
+cd ~
 sudo -u $1 chruby ruby-$rubyversion
 
 sudo -u $1 gem update --system
