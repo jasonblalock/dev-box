@@ -48,7 +48,8 @@ clear
 cd ~
 getinfo $1
 confirmation $1
-aptitude -y install software-properties-common
+aptitude update
+aptitude install -y install software-properties-common
 add-apt-repository -y ppa:git-core/ppa
 aptitude update
 aptitude -y safe-upgrade
