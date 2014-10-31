@@ -25,10 +25,10 @@ EOF
 confirmation()
 {
   sudo -u $1 echo ""
-  sudo -u $1 echo "So your settings are"
-  sudo -u $1 echo "Git name is        " $gitname
-  sudo -u $1 echo "Git username is       " $gitusername
-  sudo -u $1 echo "Your IP is         " $staticip
+  sudo -u $1 echo "So your settings are:"
+  sudo -u $1 echo "Git name is     " $gitname
+  sudo -u $1 echo "Github username is " $gitusername
+  sudo -u $1 echo "Your IP is      " $staticip
   # sudo -u $1 echo "You subnet mask is " $netmask
   sudo -u $1 echo ""
 
@@ -74,7 +74,7 @@ EOF
 fi
 
 chmod u+x /etc/profile.d/chruby.sh
-source /etc/profile.d/chruby.ch
+sudo -u $1 source /etc/profile.d/chruby.sh
 
 sudo -u $1 wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
 sudo -u $1 tar -xzvf ruby-install-0.5.0.tar.gz
