@@ -7,6 +7,8 @@ rails-dev-box
 
 ## Git
 
+    git config --global user.name "John Doe"
+    git config --global user.email johndoe@example.com
     git config --global core.autocrlf input
     git config --global branch.autosetuprebase always
 
@@ -60,9 +62,9 @@ is not always the same as `/bin/bash`.
 
 # Ruby
 
-    ruby-install ruby 2.1.3
+    ruby-install ruby 2.1.4
     echo "gem: --no-document" > ~/.gemrc
-    echo "ruby-2.1.3" > ~/.ruby-version
+    echo "ruby-2.1.4" > ~/.ruby-version
 
 Restart
 
