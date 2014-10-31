@@ -4,10 +4,10 @@ rubyversion=2.1.4
 
 getinfo()
 {
-  sudo -u $1 read -p "Enter your name for git: (looks like 192.168.1.22) " gitname
-  sudo -u $1 read -p "Enter your email for git: (looks like username@users.noreply.github.com) " gitemail
-  sudo -u $1 read -p "Enter the ip address for your server: (looks like 192.168.1.22) " staticip
-  sudo -u $1 read -p "Enter the netmask for your network: (looks like 255.255.255) " netmask
+  read -p "Enter your name for git: (looks like 192.168.1.22) " gitname
+  read -p "Enter your email for git: (looks like username@users.noreply.github.com) " gitemail
+  read -p "Enter the ip address for your server: (looks like 192.168.1.22) " staticip
+  read -p "Enter the netmask for your network: (looks like 255.255.255) " netmask
 }
 
 writeinterfacefile()
@@ -32,7 +32,7 @@ confirmation()
   sudo -u $1 echo""
 
   while true; do
-    sudo -u $1 read -p "Are these informations correct? [y/N]" yn
+    read -p "Are these informations correct? [y/N]" yn
     case $yn in
       [Yy]* ) writeinterfacefile ;;
       [Nn]* ) getinfo ;;
