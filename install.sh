@@ -23,20 +23,20 @@ EOF
 
 confirmation()
 {
-  sudo -u $1 echo""
-  sudo -u $1 echo"So your settings are"
+  sudo -u $1 echo ""
+  sudo -u $1 echo "So your settings are"
   sudo -u $1 echo "Git name is        " $gitname
   sudo -u $1 echo "Git email is       " $gitemail
   sudo -u $1 echo "Your IP is         " $staticip
   sudo -u $1 echo "You subnet mask is " $netmask
-  sudo -u $1 echo""
+  sudo -u $1 echo ""
 
   while true; do
-    read -p "Are these informations correct? [y/N]" yn
+    read -p "Are these informations correct? [y/N] " yn
     case $yn in
-      [Yy]* ) writeinterfacefile ;;
+      [Yy]* ) writeinterfacefile; break;;
       [Nn]* ) getinfo ;;
-      * ) sudo -u $1 echo "Pleas enter Y or n";;
+      * ) sudo -u $1 echo "Please enter Y or n";;
     esac
   done
 }
