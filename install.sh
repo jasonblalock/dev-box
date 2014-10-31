@@ -17,7 +17,7 @@ writeinterfacefile()
 #Your static network configuration
 auto eth1
 iface eth1 inet static
-address echo $staticip
+address $staticip
 netmask 255.255.255.0
 EOF
 }
@@ -26,9 +26,9 @@ confirmation()
 {
   sudo -u $1 echo ""
   sudo -u $1 echo "So your settings are:"
-  sudo -u $1 echo "Git name is     " $gitname
+  sudo -u $1 echo "Git name is        " $gitname
   sudo -u $1 echo "Github username is " $gitusername
-  sudo -u $1 echo "Your IP is      " $staticip
+  sudo -u $1 echo "Your IP is         " $staticip
   # sudo -u $1 echo "You subnet mask is " $netmask
   sudo -u $1 echo ""
 
