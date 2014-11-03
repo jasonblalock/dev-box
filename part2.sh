@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd ~
 gem update --system
 gem install bundler
