@@ -4,14 +4,14 @@ rails-dev-box
 
 ## Initial config
 
-   wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part1.sh
-   wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part2.sh
-   chmod u+x part1.sh
-   chmod u+x part2.sh
+    wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part1.sh
+    wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part2.sh
+    chmod u+x part1.sh
+    chmod u+x part2.sh
 
 ## Run Part 1
 
-   sudo ./part1.sh <username>
+    sudo ./part1.sh <username>
 
 Reboot when script is finished.
 
