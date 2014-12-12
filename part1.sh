@@ -1,7 +1,7 @@
 #!/bin/bash
 
-rubyversion=2.1.4
-chrubyversion=0.3.8
+rubyversion=2.1.5
+chrubyversion=0.3.9
 rubyinstallversion=0.5.0
 
 getinfo()
