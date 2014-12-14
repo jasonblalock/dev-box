@@ -25,13 +25,23 @@ include_recipe "postgresql::configuration"
 include_recipe "postgresql::service"
 
 # setup users
-include_recipe "postgresql::pg_user"
+include_recipe "postgresql::setup_users"
 
 # setup databases
-include_recipe "postgresql::pg_database"
+include_recipe "postgresql::setup_databases"
 
-# create a user
-pg_user "dev_db_user" do
-  privileges superuser: true, createdb: false, login: true
-  password "super_secret"
+# setup extensions
+include_recipe "postgresql::setup_extensions"
+
+# setup languages
+include_recipe "postgresql::setup_languages"
+
+# create a user with an MD5-encrypted password
+postgresql_user "dev_db_user" do
+  superuser true
+  createdb false
+  login true
+  replication false
+  encrypted_password "fa2bf646e49ab5e56f2b74480ba61017"
 end
+
