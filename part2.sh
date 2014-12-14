@@ -39,17 +39,17 @@ echo "gem: --no-document" > ~/.gemrc
 echo "ruby-${rubyversion}" > ~/.ruby-version
 
 cd ~
-gem update --system
-gem install bundler
-gem install rake
-gem install berkshelf
+chruby-exec "ruby-${rubyversion}" -- gem update --system
+chruby-exec "ruby-${rubyversion}" -- gem install bundler
+chruby-exec "ruby-${rubyversion}" -- gem install rake
+chruby-exec "ruby-${rubyversion}" -- gem install berkshelf
 
-sudo chruby-exec -- gem install chef
+sudo chruby-exec "ruby-${rubyversion}" -- gem install chef
 wget https://github.com/jasonblalock/rails-dev-box/archive/master.tar.gz
 tar -xzvf master.tar.gz
 cd rails-dev-box-master
-berks vendor kitchen/cookbooks
-sudo chruby-exec -- chef-solo -c solo.rb -j solo.json
+sudo chruby-exec "ruby-${rubyversion}" -- berks vendor kitchen/cookbooks
+sudo chruby-exec "ruby-${rubyversion}" -- chef-solo -c solo.rb -j solo.json
 
 read -p "Restart? [y/N] " yn
 case $yn in
