@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rubyversion=2.1.5
+
 getinfo()
 {
   read -p "Enter your name for git: " gitname
