@@ -6,8 +6,7 @@ rails-dev-box
 
     wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part1.sh
     wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part2.sh
-    chmod u+x part1.sh
-    chmod u+x part2.sh
+    chmod u+x part1.sh part2.sh
 
 ## Run Part 1
 
