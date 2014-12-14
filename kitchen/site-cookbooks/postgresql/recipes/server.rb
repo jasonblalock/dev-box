@@ -42,6 +42,6 @@ postgresql_user "dev_db_user" do
   createdb false
   login true
   replication false
-  encrypted_password "fa2bf646e49ab5e56f2b74480ba61017"
+  password "super_secret"
 end
 
