@@ -14,12 +14,12 @@ writeinterfacefile()
 {
   cat << EOF >> /etc/network/interfaces
 
-  #Your static network configuration
-  auto eth1
-  iface eth1 inet static
-  address $staticip
-  netmask 255.255.255.0
-  EOF
+#Your static network configuration
+auto eth1
+iface eth1 inet static
+address $staticip
+netmask 255.255.255.0
+EOF
 }
 
 confirmation()
