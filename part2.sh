@@ -48,7 +48,7 @@ sudo chruby-exec "ruby-${rubyversion}" -- gem install chef
 wget https://github.com/jasonblalock/rails-dev-box/archive/master.tar.gz
 tar -xzvf master.tar.gz
 cd rails-dev-box-master
-berks vendor kitchen/cookbooks
+chruby-exec "ruby-${rubyversion}" -- berks vendor kitchen/cookbooks
 sudo chruby-exec "ruby-${rubyversion}" -- chef-solo -c solo.rb -j solo.json
 
 read -p "Restart? [y/N] " yn
