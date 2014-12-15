@@ -45,7 +45,7 @@ chruby-exec "ruby-${rubyversion}" -- gem install rake
 chruby-exec "ruby-${rubyversion}" -- gem install berkshelf
 
 sudo chruby-exec "ruby-${rubyversion}" -- gem install chef
-wget https://github.com/jasonblalock/rails-dev-box/archive/master.tar.gz
+wget https://github.com/jasonblalock/rails-dev-box/archive/master.tar.gz --no-cache
 tar -xzvf master.tar.gz
 cd rails-dev-box-master
 chruby-exec "ruby-${rubyversion}" -- berks vendor kitchen/cookbooks
