@@ -20,6 +20,16 @@ Reboot when script is finished.
 
 Done!
 
+## Misc
+
+Disable elasticsearch service on start
+
+    sudo update-rc.d elasticsearch disable
+
+Set timezone
+
+    sudo dpkg-reconfigure tzdata
+
 # Manual Install
 
 ## Initial config
