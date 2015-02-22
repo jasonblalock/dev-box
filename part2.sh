@@ -6,6 +6,25 @@ getinfo()
 {
   read -p "Enter your name for git: " gitname
   read -p "Enter your username for github : " gitusername
+  read -p ""
+
+  PS3='Please select your Chef provision config: '
+  options=("Base development config" "Full config" "Quit")
+  select chefopt in "${options[@]}"
+  do
+    case $chefopt in
+      "Base development config")
+          chef="dev.json"
+          ;;
+      "Full config")
+          chef="full.json"
+          ;;
+      "Quit")
+          break
+          ;;
+      *) echo invalid option;;
+    esac
+  done
 }
 
 confirmation()
@@ -14,6 +33,7 @@ confirmation()
   echo "So your settings are:"
   echo "Your git config name is: " $gitname
   echo "Your Github username is: " $gitusername
+  echo "Your Chef provsion config is: " $chefopt
   echo ""
 
   while true; do
@@ -49,7 +69,7 @@ wget https://github.com/jasonblalock/rails-dev-box/archive/master.tar.gz --no-ca
 tar -xzvf master.tar.gz
 cd rails-dev-box-master
 chruby-exec "ruby-${rubyversion}" -- berks vendor kitchen/cookbooks
-sudo chruby-exec "ruby-${rubyversion}" -- chef-solo -c solo.rb -j solo.json
+sudo chruby-exec "ruby-${rubyversion}" -- chef-solo -c solo.rb -j $chef
 
 read -p "Restart? [y/N] " yn
 case $yn in
