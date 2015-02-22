@@ -1,8 +1,12 @@
 #!/bin/bash
 
-rubyversion=2.2.0
-chrubyversion=0.3.9
-rubyinstallversion=0.5.0
+if [ ! -f config.sh ]; then
+    sudo -u $1 echo "No config file. Downloading..."
+    sudo -u $1 wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/config.sh
+    sudo -u $1 chmod u+x config.sh
+fi
+
+sudo -u $1 source config.sh
 
 getinfo()
 {

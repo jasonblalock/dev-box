@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rubyversion=2.2.0
+source config.sh
 
 getinfo()
 {
