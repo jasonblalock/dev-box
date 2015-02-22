@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rubyversion=2.1.5
+rubyversion=2.2.0
 chrubyversion=0.3.9
 rubyinstallversion=0.5.0
 
