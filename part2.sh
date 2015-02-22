@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rubyversion=2.1.5
+rubyversion=2.2.0
 
 getinfo()
 {
