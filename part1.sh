@@ -54,7 +54,6 @@ add-apt-repository -y ppa:git-core/ppa
 aptitude update
 aptitude -y safe-upgrade
 aptitude -y install build-essential vim ruby-dev git libsqlite3-dev openssh-server
-vmware-config-tools.pl -d
 
 sudo -u $1 wget -O "chruby-${chrubyversion}.tar.gz" "https://github.com/postmodern/chruby/archive/v${chrubyversion}.tar.gz"
 sudo -u $1 tar -xzvf "chruby-$chrubyversion.tar.gz"
