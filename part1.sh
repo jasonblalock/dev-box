@@ -2,7 +2,15 @@
 
 getinfo()
 {
-  read -p "Enter the ip address for your server (192.168.33.10): " staticip
+  while true; do
+    read -p "Setup static ip address? (y/n) " yn
+    case $yn in
+      [Yy]* ) read -p "Enter the ip address for your server (ex: 192.168.33.10): " staticip; break;;
+      [Nn]* ) break ;;
+      * ) sudo -u $1 echo "Please enter Y or n ";;
+    esac
+  done
+  
   # read -p "Enter the netmask for your network: (looks like 255.255.255) " netmask
 }
 
@@ -21,15 +29,24 @@ EOF
 confirmation()
 {
   sudo -u $1 echo ""
-  sudo -u $1 echo "So your settings are:"
-  sudo -u $1 echo "Your IP is:              " $staticip
-  # sudo -u $1 echo "You subnet mask is " $netmask
+  if [ -z "$staticip" ] 
+  then
+    sudo -u $1 echo "No static ip set."
+  else
+    sudo -u $1 echo "So your settings are:"
+    sudo -u $1 echo "Your IP is:              " $staticip
+    # sudo -u $1 echo "You subnet mask is " $netmask
+  fi
   sudo -u $1 echo ""
 
   while true; do
     read -p "Is this information correct? [y/N] " yn
     case $yn in
-      [Yy]* ) writeinterfacefile; break;;
+      [Yy]* ) 
+        if [ ! -z "$staticip" ]; then
+          writeinterfacefile
+        fi
+        break;;
       [Nn]* ) getinfo ;;
       * ) sudo -u $1 echo "Please enter Y or n ";;
     esac
