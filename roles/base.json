@@ -28,6 +28,7 @@
     "recipe[curl]",
     "recipe[libqt4::dev]",
     "recipe[libsasl2_dev]",
+    "recipe[nvm::iojs]",
     "recipe[openssl]",
     "recipe[passenger_nginx]",
     "recipe[phantomjs]",

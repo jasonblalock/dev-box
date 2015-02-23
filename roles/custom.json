@@ -20,6 +20,7 @@
   "run_list": [
     "recipe[libreoffice]",
     "recipe[memcached]",
+    "recipe[bower]",
     "recipe[wordnet]",
     "recipe[java]",
     "recipe[java::default_java_symlink]",
