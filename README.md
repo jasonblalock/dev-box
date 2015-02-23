@@ -30,6 +30,11 @@ Set timezone
 
     sudo dpkg-reconfigure tzdata
 
+Multi-threaded bundler
+
+    nproc   # returns number of threads
+    bundle config --global jobs X   # replace 'X' with nproc result
+
 # Manual Install
 
 ## Initial config
