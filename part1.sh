@@ -1,12 +1,5 @@
 #!/bin/bash
 
-if [ ! -f config.sh ]; then
-    sudo -u $1 echo "No config file. Downloading..."
-    sudo -u $1 wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/config.sh
-fi
-
-source config.sh
-
 getinfo()
 {
   read -p "Enter the ip address for your server (192.168.33.10): " staticip
@@ -45,6 +38,14 @@ confirmation()
 
 clear
 cd ~
+
+if [ ! -f config.sh ]; then
+    sudo -u $1 echo "No config file. Downloading..."
+    sudo -u $1 wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/config.sh
+fi
+
+source config.sh
+
 getinfo $1
 confirmation $1
 aptitude update
