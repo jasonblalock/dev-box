@@ -27,7 +27,7 @@ confirmation()
   sudo -u $1 echo ""
 
   while true; do
-    read -p "Are these informations correct? [y/N] " yn
+    read -p "Is this information correct? [y/N] " yn
     case $yn in
       [Yy]* ) writeinterfacefile; break;;
       [Nn]* ) getinfo ;;

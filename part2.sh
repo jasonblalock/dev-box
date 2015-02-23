@@ -6,7 +6,6 @@ getinfo()
 {
   read -p "Enter your name for git: " gitname
   read -p "Enter your username for github : " gitusername
-  read -p ""
 
   PS3='Please select your Chef provision config: '
   options=("Base development config" "Full config" "Quit")
@@ -15,9 +14,11 @@ getinfo()
     case $chefopt in
       "Base development config")
           chef="dev.json"
+          break
           ;;
       "Full config")
           chef="full.json"
+          break
           ;;
       "Quit")
           break
@@ -33,11 +34,11 @@ confirmation()
   echo "So your settings are:"
   echo "Your git config name is: " $gitname
   echo "Your Github username is: " $gitusername
-  echo "Your Chef provsion config is: " $chefopt
+  echo "Your Chef provision config is: " $chefopt
   echo ""
 
   while true; do
-    read -p "Are these informations correct? [y/N] " yn
+    read -p "Is this informations correct? [y/N] " yn
     case $yn in
       [Yy]* ) break;;
       [Nn]* ) getinfo ;;
