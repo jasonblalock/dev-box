@@ -5,7 +5,7 @@
   "description": "The base role for development system",
   "default_attributes": {
     "postgresql": {
-      "version": "9.3",
+      "version": "9.4",
       "apt_distribution": "trusty",
       "conf": {
         "listen_addresses": "*",
@@ -30,7 +30,6 @@
     "recipe[libsasl2_dev]",
     "recipe[nvm::iojs]",
     "recipe[openssl]",
-    "recipe[passenger_nginx]",
     "recipe[phantomjs]",
     "recipe[postgresql::client]",
     "recipe[postgresql::server]",
