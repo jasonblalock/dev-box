@@ -60,10 +60,12 @@ echo "gem: --no-document" > ~/.gemrc
 echo "ruby-${rubyversion}" > ~/.ruby-version
 
 cd ~
+NPROC = nproc
 chruby-exec "ruby-${rubyversion}" -- gem update --system
 chruby-exec "ruby-${rubyversion}" -- gem install bundler
 chruby-exec "ruby-${rubyversion}" -- gem install rake
 chruby-exec "ruby-${rubyversion}" -- gem install berkshelf
+chruby-exec "ruby-${rubyversion}" -- bundle config --global jobs $NPROC
 
 sudo chruby-exec "ruby-${rubyversion}" -- gem install chef
 wget https://github.com/jasonblalock/rails-dev-box/archive/master.tar.gz --no-cache
