@@ -60,7 +60,7 @@ echo "gem: --no-document" > ~/.gemrc
 echo "ruby-${rubyversion}" > ~/.ruby-version
 
 cd ~
-NPROC = nproc
+NPROC=$(nproc)
 chruby-exec "ruby-${rubyversion}" -- gem update --system
 chruby-exec "ruby-${rubyversion}" -- gem install bundler
 chruby-exec "ruby-${rubyversion}" -- gem install rake
@@ -68,9 +68,9 @@ chruby-exec "ruby-${rubyversion}" -- gem install berkshelf
 chruby-exec "ruby-${rubyversion}" -- bundle config --global jobs $NPROC
 
 sudo chruby-exec "ruby-${rubyversion}" -- gem install chef
-wget https://github.com/jasonblalock/rails-dev-box/archive/master.tar.gz --no-cache
+wget https://github.com/jasonblalock/dev-box/archive/master.tar.gz --no-cache
 tar -xzvf master.tar.gz
-cd rails-dev-box-master
+cd dev-box-master
 chruby-exec "ruby-${rubyversion}" -- berks vendor kitchen/cookbooks
 sudo chruby-exec "ruby-${rubyversion}" -- chef-solo -c solo.rb -j $chef
 
