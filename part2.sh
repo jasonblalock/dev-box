@@ -66,7 +66,7 @@ chruby-exec "ruby-${rubyversion}" -- gem install bundler
 chruby-exec "ruby-${rubyversion}" -- gem install rake
 chruby-exec "ruby-${rubyversion}" -- gem install berkshelf
 chruby-exec "ruby-${rubyversion}" -- bundle config --global jobs $NPROC
-chruby-exec "ruby-${rubyversion}" -- bundle config --global path vendor/bundle
+# chruby-exec "ruby-${rubyversion}" -- bundle config --global path vendor/bundle
 
 sudo chruby-exec "ruby-${rubyversion}" -- gem install chef
 wget https://github.com/jasonblalock/dev-box/archive/master.tar.gz --no-cache
