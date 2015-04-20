@@ -4,8 +4,8 @@ rails-dev-box
 
 ## Initial config
 
-    wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part1.sh
-    wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/part2.sh
+    wget https://raw.githubusercontent.com/jasonblalock/dev-box/master/part1.sh --no-cache
+    wget https://raw.githubusercontent.com/jasonblalock/dev-box/master/part2.sh --no-cache
     chmod u+x part1.sh part2.sh
 
 ## Run Part 1
