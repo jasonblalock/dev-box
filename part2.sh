@@ -51,7 +51,7 @@ cd ~
 getinfo
 confirmation
 
-git config --global user.name $gitname
+git config --global user.name "${gitname}"
 git config --global user.email "${gitusername}@users.noreply.github.com"
 git config --global core.autocrlf input
 git config --global branch.autosetuprebase always
