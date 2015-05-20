@@ -26,6 +26,6 @@
     "recipe[elasticsearch]",
     "recipe[pdftk]",
     "recipe[redisio]",
-    "recipe[redisio:enable]"
+    "recipe[redisio::enable]"
   ]
 }
