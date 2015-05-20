@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ ! -f config.sh ]; then
+    echo "No config file. Downloading..."
+    wget https://raw.githubusercontent.com/jasonblalock/rails-dev-box/master/config.sh --no-cache
+fi
+
 source config.sh
 
 getinfo()
