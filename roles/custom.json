@@ -24,6 +24,8 @@
     "recipe[java]",
     "recipe[java::default_java_symlink]",
     "recipe[elasticsearch]",
-    "recipe[pdftk]"
+    "recipe[pdftk]",
+    "recipe[redisio]",
+    "recipe[redisio:enable]"
   ]
 }
