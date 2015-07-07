@@ -5,8 +5,9 @@
   "description": "Customizations for development system",
   "default_attributes": {
     "java": {
-      "install_flavor": "openjdk",
-      "jdk_version": "8"
+      "install_flavor": "oracle",
+      "jdk_version": "8",
+      "oracle": {"accept_oracle_download_terms": true}
     },
     "elasticsearch": {
       "allocated_memory": "1024m",
