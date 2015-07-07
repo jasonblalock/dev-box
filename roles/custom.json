@@ -5,9 +5,8 @@
   "description": "Customizations for development system",
   "default_attributes": {
     "java": {
-      "install_flavor": "oracle",
-      "jdk_version": "8",
-      "oracle": {"accept_oracle_download_terms": true}
+      "install_flavor": "openjdk",
+      "jdk_version": "8"
     },
     "elasticsearch": {
       "allocated_memory": "1024m",
@@ -20,7 +19,6 @@
   "run_list": [
     "recipe[libreoffice]",
     "recipe[memcached]",
-    // "recipe[bower]", needs npm recipe
     "recipe[java]",
     "recipe[java::default_java_symlink]",
     "recipe[elasticsearch]",

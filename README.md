@@ -1,4 +1,4 @@
-rails-dev-box
+dev-box
 =============
 # Automatic Install
 
