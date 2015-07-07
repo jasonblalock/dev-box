@@ -28,7 +28,7 @@
     "recipe[curl]",
     "recipe[libqt4::dev]",
     "recipe[libsasl2_dev]",
-    "recipe[nvm::iojs]",
+    "recipe[nvm]",
     "recipe[openssl]",
     "recipe[phantomjs]",
     "recipe[postgresql::client]",
